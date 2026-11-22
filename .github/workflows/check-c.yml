@@ -1,0 +1,25 @@
+name: Check C exercises
+
+on:
+  push:
+    paths:
+      - 'c/**'
+      - '.github/workflows/check-c.yml'
+  pull_request:
+    paths:
+      - 'c/**'
+      - '.github/workflows/check-c.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check-loops:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and compare output
+        run: |
+          gcc -std=c11 -Wall -Wextra -Werror -pedantic c/loops/loops.c -o "$RUNNER_TEMP/study-loops"
+          "$RUNNER_TEMP/study-loops" > "$RUNNER_TEMP/loops-actual.txt"
+          diff -u c/loops/expected.txt "$RUNNER_TEMP/loops-actual.txt"
