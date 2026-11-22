@@ -1,5 +1,0 @@
-count: 1 2 3
-sums: 15 10
-count and exit: 1 2 3 4 end=5
-zero iterations: end=3
-countdown: 5 4 3 2 1 end=0
